@@ -8,6 +8,7 @@ export default function LoginPage({providers}) {
       {Object.values(providers).map(provider => (
         // eslint-disable-next-line react/jsx-key
         <div>
+          Login
           <button //sign in with google
             //onClick={() => signIn('google')}
             onClick={async () => {await signIn(provider.id)}} 

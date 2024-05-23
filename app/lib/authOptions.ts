@@ -2,6 +2,7 @@ import clientPromise from "./db";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import GoogleProvider from "next-auth/providers/google";
 import AppleProvider from "next-auth/providers/apple";
+import { AuthOptions } from "next-auth";
 
 
 export const authOptions = {
@@ -19,5 +20,4 @@ export const authOptions = {
       // ...add more providers here
     ],
     adapter: MongoDBAdapter(clientPromise),
-    
-  };
+} as AuthOptions;

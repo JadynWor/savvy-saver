@@ -4,7 +4,26 @@ let globalWithMongo = global as typeof globalThis & {
   
   // This approach is taken from https://github.com/vercel/next.js/tree/canary/examples/with-mongodb
   import { MongoClient } from "mongodb"
+  import mongoose from 'mongoose';
   
+  export async function connectToMongoDB() {
+    try {
+      mongoose.connect(process.env.MONGO_URI!);
+      const connection = mongoose.connection;
+  
+      connection.on('connected', () => {
+        console.log('Great! MongoDb is connected bro!');
+      });
+  
+      connection.on('error', (err) => {
+        console.log('MongoDB connected ERROR. ' + err);
+        process.exit();
+      });
+    } catch (error) {
+      console.log('Ups! Something went wrong! ' + error);
+    }
+  }
+
   if (!process.env.MONGODB_URI) {
     throw new Error('Invalid/Missing environment variable: "MONGODB_URI"')
   }
