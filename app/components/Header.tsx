@@ -33,19 +33,10 @@ export default function Header({session}:{session:Session | null}){
                     </>      
                 }
                 {!session && (
-                    <>
-                        
-                        <button
-                            onClick={() => signIn()}
-                            className="text-black font-bold px-4 py-2 rounded"
-                        >
-                            Sign in
-                        </button>
-                        <button 
-                            onClick={() =>signupsd }
-                            className="bg-yellow-600 font-bold text-white">Register
-                        </button>
-                        <Link href="/sign-up">dsfsdfdsfsd</Link>
+                    <>                      
+                        <Link href="/log-in" className="flex items-center font-bold text-green-600">Login</Link> 
+                        <span className="text-gray-300 text-lg">|</span>                     
+                        <Link href="/sign-up" className="flex items-center font-bold text-green-600	">Register</Link>
                     </>
                 )}
                 <span className="text-gray-300 text-lg">|</span>
