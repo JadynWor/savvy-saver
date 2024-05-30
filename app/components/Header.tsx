@@ -34,14 +34,14 @@ export default function Header({ session }: { session: Session | null }) {
           <>
             <Link
               href="/log-in"
-              className="flex items-center font-bold text-blue-400 "
+              className="flex items-center font-bold text-green-400 "
             >
               Login
             </Link>
             <span className="text-gray-300 text-lg">|</span>
             <Link
               href="/sign-up"
-              className="flex items-center font-bold text-blue-400	"
+              className="flex items-center font-bold text-green-400"
             >
               Register
             </Link>
