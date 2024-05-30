@@ -22,12 +22,13 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header session={session}>{JSON.stringify(session)}</Header>
-      
+        <Header
+         session={session}>{JSON.stringify(session)}
+        </Header>
         {children}
       </body>
-      <Footer session={null}>
-          
+        <Footer 
+         session={null}>
         </Footer>
     </html>
   );
