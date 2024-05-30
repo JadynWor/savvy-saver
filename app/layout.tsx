@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/app/components/Header"
+import Header from "@/app/components/Header";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./lib/authOptions";
 
@@ -21,9 +21,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header session={session}>
-          {JSON.stringify(session)}
-        </Header>
+        <Header session={session}>{JSON.stringify(session)}</Header>
         {children}
       </body>
     </html>

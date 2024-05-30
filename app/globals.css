@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    background-color: whitesmoke;
+div {
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 500px;
+  text-align: center;
+}
+body {
+  background-color: #a1c4fd;
+}
+Header {
+  background-color: white;
+}
+button {
+  float: right;
+  bottom: 10px;
 }
