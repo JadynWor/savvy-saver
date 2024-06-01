@@ -5,31 +5,34 @@ import Header from "@/app/components/Header";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./lib/authOptions";
 import Footer from "@/app/components/Footer";
-
-const inter = Inter({ subsets: ["latin"] });
+import {
+    bebasNeue,
+    jetBrains,
+    poppins,
+    quickSand,
+    sourceCodePro,
+} from "@/@lib/font";
 
 export const metadata: Metadata = {
-  title: "Savvy-Saver",
-  description: "Save money on your food",
+    title: "Savvy-Saver",
+    description: "Save money on your food",
 };
 
 export default async function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-  const session = await getServerSession(authOptions);
-  return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Header
-         session={session}>{JSON.stringify(session)}
-        </Header>
-        {children}
-      </body>
-        <Footer 
-         session={null}>
-        </Footer>
-    </html>
-  );
+    const session = await getServerSession(authOptions);
+    return (
+        <html lang="en">
+            <body
+                className={`${jetBrains.variable} ${quickSand.variable} ${bebasNeue.variable} ${jetBrains.variable} ${poppins.className} ${poppins.variable} ${sourceCodePro.variable} flex flex-col relative h-screen w-screen`}
+            >
+                <Header session={session}>{JSON.stringify(session)}</Header>
+                {children}
+                <Footer />
+            </body>
+        </html>
+    );
 }
