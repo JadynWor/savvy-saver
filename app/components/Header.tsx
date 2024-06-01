@@ -1,8 +1,8 @@
 "use client";
 import { Session } from "next-auth";
-import { signIn, signOut } from "next-auth/react";
 import "animate.css";
 import Link from "next/link";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Header({ session }: { session: Session | null }) {
   const name = session?.user?.name || "";
@@ -14,26 +14,32 @@ export default function Header({ session }: { session: Session | null }) {
       </Link>
       <nav className="flex gap-2 *:rounded *:px-2 *:py-1">
         <span className="text-gray-300 text-lg">|</span>
-        {session && (
+        {!session && (
           <>
             <div className="flex items-center gap-2 center font-bold">
-              Welcome Back, {session.user?.name}
             </div>
 
             <button>Cart</button>
             <span className="text-gray-300 text-lg">|</span>
+
+            <Link
+              href="/logout"
+              className="flex items-center font-bold text-green-400 "
+            >
+              Logout
+            </Link>
+
             <button
-              onClick={() => signOut()}
-              className="bg-yellow-600 font-bold text-white"
+              className="bg-green-600 font-bold text-white"
             >
               Log Out
             </button>
           </>
         )}
-        {!session && (
+        {session && (
           <>
             <Link
-              href="/log-in"
+              href="/login"
               className="flex items-center font-bold text-green-400 "
             >
               Login
