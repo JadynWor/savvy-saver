@@ -19,7 +19,7 @@ export default function Header() {
                 </Link>
                 <Link href={"placeholder"}>
                     <button className="btn btn-ghost btn-square w-fit p-1">
-                        {"Jadyn Worthington & Donovan Daniels"}
+                        {"Jadyn Worthington & Donavan Daniels"}
                     </button>
                 </Link>
             </div>

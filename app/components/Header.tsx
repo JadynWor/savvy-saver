@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 type HeaderProperties = {
     readonly children: React.ReactNode;
-    readonly session: Session | null;
+    readonly session: Session;
 };
 
 const Header = ({ children, session }: HeaderProperties) => {
@@ -18,24 +18,27 @@ const Header = ({ children, session }: HeaderProperties) => {
                 {"Savvy Saver"}
             </Link>
             <nav className="flex gap-2 *:rounded *:px-2 *:py-1">
-                <span className="text-gray-300 text-lg">|</span>
                 {!session && (
                     <>
                         <div className="flex items-center gap-2 center font-bold"></div>
-
-                        <button>{"Cart"}</button>
-                        <span className="text-gray-300 text-lg">|</span>
-
-                        <Link
-                            href="/logout"
-                            className="flex items-center font-bold text-green-400 "
-                        >
-                            {"Logout"}
-                        </Link>
-
-                        <button className="bg-green-600 font-bold text-white">
-                            {"Log Out"}
-                        </button>
+                        <div className="flex gap-4">
+                            <Link
+                                href="/login"
+                                className="flex items-center font-bold text-green-400 "
+                            >
+                                <button className="bg-green-600 font-bold text-white rounded-full px-4 py-2">
+                                    {"Sign In"}
+                                </button>
+                            </Link>
+                            <Link
+                                href="/sign-up"
+                                className="flex items-center font-bold text-green-400"
+                            >
+                                <button className="bg-green-600 font-bold text-white rounded-full px-4 py-2">
+                                    {"Sign Up"}
+                                </button>
+                            </Link>
+                        </div>
                     </>
                 )}
                 {session && (
@@ -46,7 +49,7 @@ const Header = ({ children, session }: HeaderProperties) => {
                         >
                             {"Login"}
                         </Link>
-                        <span className="text-gray-300 text-lg">|</span>
+
                         <Link
                             href="/sign-up"
                             className="flex items-center font-bold text-green-400"
@@ -55,10 +58,8 @@ const Header = ({ children, session }: HeaderProperties) => {
                         </Link>
                     </>
                 )}
-                <span className="text-gray-300 text-lg">|</span>
             </nav>
             {children}
-            {/* Is this where you want it?? */}
         </header>
     );
 };
