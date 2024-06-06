@@ -1,7 +1,7 @@
 export default function Home() {
     return (
-        <div className="bg-green-400 flex flex-col h-full items-center justify-center">
-            <header className="font-bold text-3xl mt-0">
+        <div className="bg-green-400 flex flex-col h-full items-center justify-center pt-4">
+            <header className="font-bold text-3xl mt-1">
                 <span className="block"> Savvy-Saver</span>
             </header>
             <span className="text">
