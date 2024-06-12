@@ -59,7 +59,6 @@ const Header = ({ children, session }: HeaderProperties) => {
                     </>
                 )}
             </nav>
-            {children}
         </header>
     );
 };
