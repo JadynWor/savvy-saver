@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/app/components/Header";
+import Header from "@/src/app/components/Header";
 import { getServerSession } from "next-auth";
-import { authOptions } from "./lib/authOptions";
-import Footer from "@/app/components/Footer";
+import { authOptions } from "../lib/authOptions";
+import Footer from "@/src/app/components/Footer";
 import {
     bebasNeue,
     jetBrains,
