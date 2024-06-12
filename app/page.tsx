@@ -1,14 +1,9 @@
 export default function Home() {
     return (
-        <div className="bg-green-400 flex flex-col h-full items-center justify-center pt-4">
-            <header className="font-bold text-3xl mt-1">
-                <span className="block"> Savvy-Saver</span>
-            </header>
-            <span className="text">
+        <div className="bg-[(/home.jpg)] bg-cover flex flex-col h-full items-center justify-center pt-4">
+            <span className="font-bold text-3xl">
                 {" "}
-                Why Over Spend Over Groceries? Use Savvy-Saver to search the
-                product you want and find it at the cheapest deal and closest
-                store near you!
+                Smart Savings, Closer to You
             </span>
             <div className="w-full px-8 flex flex-row  justify-center  items-center space-x-4 mt-8">
                 <input
