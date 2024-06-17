@@ -1,40 +1,41 @@
 "use client";
-import React from "react";
-import { Session } from "next-auth";
+
+import type { Session } from "next-auth";
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 
 type HeaderProperties = {
-    readonly children: React.ReactNode;
+    readonly children?: React.ReactNode;
     readonly session: Session;
 };
 
-const Header = ({ children, session }: HeaderProperties) => {
-    const name = session?.user?.name || "";
-    const firstName = name.split(" ")[0]; //"Jadyn Worthington, this splits it so only first from the first index of character until space"
+/**
+ * Header component for displaying navigation links.
+ * @param {HeaderProperties} props - The properties for the Header component.
+ * @returns {JSX.Element} The rendered Header component.
+ */
+const Header = ({ session }: HeaderProperties): JSX.Element => {
+    const name = session?.user?.name ?? "";
+    // Split name to get the first name, but not used currently.
+    // const firstName = name.split(" ")[0];
+
     return (
-        <header className="border-b p-5 flex justify-between">
-            <Link className="text-Black font-bold text-4xl" href="">
+        <header className="flex justify-between border-b p-5">
+            <Link className="text-4xl font-bold text-black" href="">
                 {"Savvy Saver"}
             </Link>
-            <nav className="flex gap-2 *:rounded *:px-2 *:py-1">
+            <nav className="flex gap-2 rounded px-2 py-1">
                 {!session && (
                     <>
-                        <div className="flex items-center gap-2 center font-bold"></div>
+                        <div className="center flex items-center gap-2 font-bold"></div>
                         <div className="flex gap-4">
-                            <Link
-                                href="/login"
-                                className="flex items-center font-bold text-green-400 "
-                            >
-                                <button className="bg-green-600 font-bold text-white rounded-full px-4 py-2">
+                            <Link className="flex items-center font-bold text-green-400" href="/login">
+                                <button className="rounded-full bg-green-600 px-4 py-2 font-bold text-white" type="button">
                                     {"Sign In"}
                                 </button>
                             </Link>
-                            <Link
-                                href="/sign-up"
-                                className="flex items-center font-bold text-green-400"
-                            >
-                                <button className="bg-green-600 font-bold text-white rounded-full px-4 py-2">
+                            <Link className="flex items-center font-bold text-green-400" href="/sign-up">
+                                <button className="rounded-full bg-green-600 px-4 py-2 font-bold text-white" type="button">
                                     {"Sign Up"}
                                 </button>
                             </Link>
@@ -43,17 +44,10 @@ const Header = ({ children, session }: HeaderProperties) => {
                 )}
                 {session && (
                     <>
-                        <Link
-                            href="/login"
-                            className="flex items-center font-bold text-green-400 "
-                        >
+                        <Link className="flex items-center font-bold text-green-400" href="/login">
                             {"Login"}
                         </Link>
-
-                        <Link
-                            href="/sign-up"
-                            className="flex items-center font-bold text-green-400"
-                        >
+                        <Link className="flex items-center font-bold text-green-400" href="/sign-up">
                             {"Register"}
                         </Link>
                     </>

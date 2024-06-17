@@ -1,5 +1,9 @@
-import Image from "next/image";
+import React from "react";
 
-export default function Cart() {
-    return <div>this is cart</div>;
-}
+/**
+ * Cart component.
+ * @returns {JSX.Element} The rendered cart component.
+ */
+const Cart: React.FC = (): JSX.Element => <div>{"this is cart"}</div>;
+
+export default Cart;

@@ -1,9 +1,8 @@
+import React from "react";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import Header from "@/src/app/components/Header";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../lib/authOptions";
+import Header from "@/src/app/components/Header";
 import Footer from "@/src/app/components/Footer";
 import {
     bebasNeue,
@@ -12,22 +11,30 @@ import {
     quickSand,
     sourceCodePro,
 } from "@/@lib/font";
+import "./globals.css";
 
+/**
+ * Metadata for the application.
+ */
 export const metadata: Metadata = {
-    title: "Savvy-Saver",
     description: "Save money on your food",
+    title: "Savvy-Saver",
 };
 
-export default async function RootLayout({
+/**
+ * Root layout component.
+ * @param {Object} props - The component props.
+ * @param {Readonly<{children: React.ReactNode}>} props.children - The child components.
+ * @returns {Promise<JSX.Element>} The rendered layout.
+ */
+const RootLayout: React.FC<Readonly<{ children: React.ReactNode }>> = async ({
     children,
-}: Readonly<{
-    children: React.ReactNode;
-}>) {
+}) => {
     const session = await getServerSession(authOptions);
     return (
         <html lang="en">
             <body
-                className={`${jetBrains.variable} ${quickSand.variable} ${bebasNeue.variable} ${jetBrains.variable} ${poppins.className} ${poppins.variable} ${sourceCodePro.variable} flex flex-col relative h-screen w-screen`}
+                className={`${jetBrains.variable} ${quickSand.variable} ${bebasNeue.variable} ${poppins.variable} ${poppins.className} ${sourceCodePro.variable} flex flex-col relative h-screen w-screen`}
             >
                 <Header session={session}>{JSON.stringify(session)}</Header>
                 {children}
@@ -35,4 +42,6 @@ export default async function RootLayout({
             </body>
         </html>
     );
-}
+};
+
+export default RootLayout;

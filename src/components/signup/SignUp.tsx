@@ -2,31 +2,30 @@
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 /**
- *
- * @returns
+ * SignUp component for user registration.
+ * @returns {JSX.Element} The rendered SignUp component.
  */
-const SignUp = (): JSX.Element => {
+const SignUp: React.FC = (): JSX.Element => {
     const router = useRouter();
 
-    const [user, setUser] = React.useState({
-        username: "",
+    const [user, setUser] = useState({
         email: "",
         password: "",
+        username: "",
     });
 
-    const [buttonDisabled, setButtonDisabled] = React.useState(false);
+    const [buttonDisabled, setButtonDisabled] = useState(false);
+    const [loading, setLoading] = useState(false);
 
-    const [loading, setLoading] = React.useState(false);
-
-    const onSignUp = async () => {
+    const onSignUp = async (): Promise<void> => {
         try {
             setLoading(true);
 
             const response = await axios.post("/api/users/signup", user);
-            console.log("signup okay", response.data);
+            console.info("Signup successful", response.data);
             router.push("/login");
         } finally {
             setLoading(false);
@@ -34,73 +33,69 @@ const SignUp = (): JSX.Element => {
     };
 
     useEffect(() => {
-        if (
-            user.username.length > 0 &&
-            user.email.length > 0 &&
-            user.password.length > 0
-        ) {
-            setButtonDisabled(false);
-        } else {
-            setButtonDisabled(true);
-        }
+        setButtonDisabled(
+            user.username.length === 0 ||
+            user.email.length === 0 ||
+            user.password.length === 0
+        );
     }, [user]);
-
-    console.log(user);
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
-            <h1 className="py-10 mb-10 text-5xl">
+            <h1 className="mb-10 py-10 text-5xl">
                 {loading ? "Processing..." : "Free Sign Up"}
             </h1>
 
             <input
-                className="w-[350px] text-slate-800 p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
+                className="mb-4 w-[350px] rounded-lg border border-gray-300 p-2 text-slate-800 focus:border-gray-600 focus:outline-none"
                 id="username"
+                onChange={(event) => setUser({ ...user, username: event.target.value })}
+                placeholder="Your Username..."
                 type="text"
                 value={user.username}
-                onChange={(e) => setUser({ ...user, username: e.target.value })}
-                placeholder="Your Username..."
             />
 
             <input
-                className="w-[350px] text-slate-800 p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
+                className="mb-4 w-[350px] rounded-lg border border-gray-300 p-2 text-slate-800 focus:border-gray-600 focus:outline-none"
                 id="email"
-                type="text"
-                value={user.email}
-                onChange={(e) => setUser({ ...user, email: e.target.value })}
+                onChange={(event) => setUser({ ...user, email: event.target.value })}
                 placeholder="Your Email..."
+                type="email"
+                value={user.email}
             />
 
             <input
-                className="w-[350px] text-slate-800 p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
+                className="mb-4 w-[350px] rounded-lg border border-gray-300 p-2 text-slate-800 focus:border-gray-600 focus:outline-none"
                 id="password"
+                onChange={(event) => setUser({ ...user, password: event.target.value })}
+                placeholder="Your Password..."
                 type="password"
                 value={user.password}
-                onChange={(e) => setUser({ ...user, password: e.target.value })}
-                placeholder="Your Password..."
             />
 
             <button
+                className="mt-10 rounded-lg border border-gray-300 px-40 py-3 font-bold uppercase focus:border-gray-600 focus:outline-none"
+                disabled={buttonDisabled}
                 onClick={onSignUp}
-                className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600 uppercase px-40 py-3 mt-10 font-bold"
+                type="button"
             >
                 {buttonDisabled ? "Sign Up" : "Register My Account Now"}
             </button>
 
             <Link href="login">
                 <p className="mt-10">
-                    Do you have a account already?{" "}
-                    <span className="font-bold text-green-600 ml-2 cursor-pointer underline">
-                        Login to your account
+                    {"Do you have an account already? "}
+                    <span className="ml-2 cursor-pointer font-bold text-green-600 underline">
+                        {"Login to your account"}
                     </span>
                 </p>
             </Link>
 
             <Link href="/">
-                <p className="mt-8 opacity-50"></p>
+                <p className="mt-8 opacity-50 self-closing" />
             </Link>
         </div>
     );
 };
 
-export { SignUp as default };
+export default SignUp;
