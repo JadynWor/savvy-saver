@@ -3,7 +3,7 @@
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 
 type FormValues = {
@@ -54,7 +54,7 @@ const SignUp: React.FC = (): JSX.Element => {
         isSubmitting || !isValid || isValidating || !isDirty;
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen py-2">
+        <div className="flex min-h-screen flex-col items-center justify-center py-2">
             <h1 className="mb-10 py-10 text-5xl">
                 {isLoading ? "Processing..." : "Free Sign Up"}
             </h1>
