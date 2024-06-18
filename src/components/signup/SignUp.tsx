@@ -1,24 +1,40 @@
+/* eslint-disable more/no-hardcoded-password -- disabled, used for form inputs, not states */
 "use client";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+
+type FormValues = {
+    email: string;
+    password: string;
+    username: string;
+};
+
+const FORM_DEFAULT_VALUES: FormValues = {
+    email: "",
+    password: "",
+    username: "",
+};
 
 /**
+ * WHO IS GPTING THIS??
+ *
  * SignUp component for user registration.
  * @returns {JSX.Element} The rendered SignUp component.
  */
 const SignUp: React.FC = (): JSX.Element => {
     const router = useRouter();
 
-    const [user, setUser] = useState({
-        email: "",
-        password: "",
-        username: "",
+    const { formState, register } = useForm({
+        criteriaMode: "all",
+        defaultValues: FORM_DEFAULT_VALUES,
+        mode: "all",
+        reValidateMode: "onChange",
     });
 
-    const [buttonDisabled, setButtonDisabled] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [isLoading, startTransition] = React.useTransition();
 
     const onSignUp = async (): Promise<void> => {
         try {
@@ -32,54 +48,48 @@ const SignUp: React.FC = (): JSX.Element => {
         }
     };
 
-    useEffect(() => {
-        setButtonDisabled(
-            user.username.length === 0 ||
-            user.email.length === 0 ||
-            user.password.length === 0
-        );
-    }, [user]);
+    const { isDirty, isSubmitting, isValid, isValidating } = formState;
+
+    const isButtonDisabled =
+        isSubmitting || !isValid || isValidating || !isDirty;
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
             <h1 className="mb-10 py-10 text-5xl">
-                {loading ? "Processing..." : "Free Sign Up"}
+                {isLoading ? "Processing..." : "Free Sign Up"}
             </h1>
 
             <input
                 className="mb-4 w-[350px] rounded-lg border border-gray-300 p-2 text-slate-800 focus:border-gray-600 focus:outline-none"
                 id="username"
-                onChange={(event) => setUser({ ...user, username: event.target.value })}
                 placeholder="Your Username..."
                 type="text"
-                value={user.username}
+                {...register("username")}
             />
 
             <input
                 className="mb-4 w-[350px] rounded-lg border border-gray-300 p-2 text-slate-800 focus:border-gray-600 focus:outline-none"
                 id="email"
-                onChange={(event) => setUser({ ...user, email: event.target.value })}
                 placeholder="Your Email..."
                 type="email"
-                value={user.email}
+                {...register("email")}
             />
 
             <input
                 className="mb-4 w-[350px] rounded-lg border border-gray-300 p-2 text-slate-800 focus:border-gray-600 focus:outline-none"
                 id="password"
-                onChange={(event) => setUser({ ...user, password: event.target.value })}
                 placeholder="Your Password..."
                 type="password"
-                value={user.password}
+                {...register("password")}
             />
 
             <button
                 className="mt-10 rounded-lg border border-gray-300 px-40 py-3 font-bold uppercase focus:border-gray-600 focus:outline-none"
-                disabled={buttonDisabled}
+                disabled={isButtonDisabled}
                 onClick={onSignUp}
                 type="button"
             >
-                {buttonDisabled ? "Sign Up" : "Register My Account Now"}
+                {"Sign Up"}
             </button>
 
             <Link href="login">
@@ -92,7 +102,7 @@ const SignUp: React.FC = (): JSX.Element => {
             </Link>
 
             <Link href="/">
-                <p className="mt-8 opacity-50 self-closing" />
+                <p className="self-closing mt-8 opacity-50" />
             </Link>
         </div>
     );

@@ -1,3 +1,4 @@
+/* eslint-disable node/no-unpublished-import -- disabled */
 /* eslint-disable import/no-namespace -- disabled */
 /* eslint-disable sort-keys -- disabled */
 

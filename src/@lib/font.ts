@@ -1,3 +1,5 @@
+/* eslint-disable new-cap -- disabled */
+
 import {
     Bebas_Neue,
     JetBrains_Mono,
