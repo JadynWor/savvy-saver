@@ -40,9 +40,9 @@ const bebasNeue = Bebas_Neue({
 /**
  * Loads poppins from google api
  * - latin subset
- * - display is auto, meaning that it is up to the user (browser) to display poppins or not (more than likely yes)
+ * - display is auto, it's up to the user (browser) to display poppins or not (high probability of yes)
  * - css variable is --poppins
- * - weights are (400 light) (700 bold) (800 really bold)
+ * - weights are (400 light) (700 bold) (800 extra bold)
  *
  */
 const poppins = Poppins({
@@ -53,7 +53,7 @@ const poppins = Poppins({
 });
 
 /**
- * Font for displaying code maybe
+ * Font for displaying code
  * - latin subset
  * - css variable --source_code_pro
  * - weight (400 light)
