@@ -1,8 +1,6 @@
 /* eslint-disable more/no-hardcoded-password -- disabled, used for form inputs, not states */
 "use client";
-import axios from "axios";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
 
@@ -25,28 +23,12 @@ const FORM_DEFAULT_VALUES: FormValues = {
  * @returns {JSX.Element} The rendered SignUp component.
  */
 const SignUp: React.FC = (): JSX.Element => {
-    const router = useRouter();
-
     const { formState, register } = useForm({
         criteriaMode: "all",
         defaultValues: FORM_DEFAULT_VALUES,
         mode: "all",
         reValidateMode: "onChange",
     });
-
-    const [isLoading, startTransition] = React.useTransition();
-
-    const onSignUp = async (): Promise<void> => {
-        try {
-            setLoading(true);
-
-            const response = await axios.post("/api/users/signup", user);
-            console.info("Signup successful", response.data);
-            router.push("/login");
-        } finally {
-            setLoading(false);
-        }
-    };
 
     const { isDirty, isSubmitting, isValid, isValidating } = formState;
 
@@ -56,7 +38,7 @@ const SignUp: React.FC = (): JSX.Element => {
     return (
         <div className="flex min-h-screen flex-col items-center justify-center py-2">
             <h1 className="mb-10 py-10 text-5xl">
-                {isLoading ? "Processing..." : "Free Sign Up"}
+                {"Processing..." }{"Free Sign Up"}
             </h1>
 
             <input
@@ -86,7 +68,6 @@ const SignUp: React.FC = (): JSX.Element => {
             <button
                 className="mt-10 rounded-lg border border-gray-300 px-40 py-3 font-bold uppercase focus:border-gray-600 focus:outline-none"
                 disabled={isButtonDisabled}
-                onClick={onSignUp}
                 type="button"
             >
                 {"Sign Up"}

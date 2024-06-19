@@ -26,6 +26,7 @@ type LayoutProperties = {
  */
 const RootLayout = async ({
     children,
+// eslint-disable-next-line require-await, @typescript-eslint/require-await -- disabled require await so faster
 }: LayoutProperties): Promise<JSX.Element> => (
     <html lang="en">
         <body
