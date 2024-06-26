@@ -1,5 +1,11 @@
 import React from 'react';
 
+
+/**
+ * Home component.
+ * @returns The rendered Home component.
+ */
+
 export default function LogoutPage() {
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">

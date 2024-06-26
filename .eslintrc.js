@@ -69,7 +69,7 @@ module.exports = {
   ignorePatterns: ["*.js", "next-env.d.ts", "next.config.mjs"],
   overrides: [
       {
-          files: ["*.js"],
+          files: ["*.js","*.jsx"],
           rules: {
               "tsdoc/syntax": "warn",
               "@typescript-eslint/no-unsafe-assignment": "error",

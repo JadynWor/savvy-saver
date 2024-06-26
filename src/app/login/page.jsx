@@ -1,57 +1,64 @@
-import { login, signup } from "./actions";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { login, signup } from './actions';
 
-export default function LoginPage() {
-    return (
-        <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-green-400 via-green-500 to-green-600">
-            <form className="w-full max-w-sm text-white">
-                <h2 className="text-3xl font-bold text-center mb-8">Welcome</h2>
-                <div className="mb-6">
-                    <label
-                        htmlFor="email"
-                        className="block text-sm font-medium mb-2"
-                    >
-                        Email:
-                    </label>
-                    <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        className="w-full px-3 py-2 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
-                    />
-                </div>
-                <div className="mb-6">
-                    <label
-                        htmlFor="password"
-                        className="block text-sm font-medium mb-2"
-                    >
-                        Password:
-                    </label>
-                    <input
-                        id="password"
-                        name="password"
-                        type="password"
-                        required
-                        className="w-full px-3 py-2 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
-                    />
-                </div>
-                <div className="flex items-center justify-between">
-                    <button
-                        formAction={login}
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition duration-200"
-                    >
-                        Log in
-                    </button>
-                </div>
-                <div className="flex items-center justify-between mt-4">
-                    <button
-                        formAction={signup}
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition duration-200"
-                    >
-                        Forgot Password?
-                    </button>
-                </div>
-            </form>
-        </div>
-    );
-}
+/**
+ * LoginPage component for user authentication
+ * @param {Object} props - Component props.
+ * @returns {JSX.Element} The rendered login page component.
+ */
+const LoginPage: React.FC = () => (
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-green-400 via-green-500 to-green-600">
+        <form className="w-full max-w-sm text-white">
+            <h2 className="mb-8 text-center text-3xl font-bold">Welcome</h2>
+            <div className="mb-6">
+                <label className="mb-2 block text-sm font-medium" htmlFor="email">
+                    Email:
+                </label>
+                <input
+                    className="w-full rounded-lg px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    id="email"
+                    name="email"
+                    required
+                    type="email"
+                />
+            </div>
+            <div className="mb-6">
+                <label className="mb-2 block text-sm font-medium" htmlFor="password">
+                    Password:
+                </label>
+                <input
+                    className="w-full rounded-lg px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    id="password"
+                    name="password"
+                    required
+                    type="password"
+                />
+            </div>
+            <div className="flex items-center justify-between">
+                <button
+                    className="w-full rounded-lg bg-blue-600 py-2 px-4 text-white transition duration-200 hover:bg-blue-700"
+                    onClick={login}
+                    type="button"
+                >
+                    Log in
+                </button>
+            </div>
+            <div className="mt-4 flex items-center justify-between">
+                <button
+                    className="w-full rounded-lg bg-blue-600 py-2 px-4 text-white transition duration-200 hover:bg-blue-700"
+                    onClick={signup}
+                    type="button"
+                >
+                    Forgot Password?
+                </button>
+            </div>
+        </form>
+    </div>
+);
+
+LoginPage.propTypes = {
+    // Define prop types here if necessary
+};
+
+export default LoginPage;
