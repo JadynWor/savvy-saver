@@ -6,3 +6,5 @@ import type { PrismaClient } from "@prisma/client";
 declare global {
     const prisma: PrismaClient;
 }
+
+declare module "server-only";

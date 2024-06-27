@@ -1,10 +1,8 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/src/app/components/Header";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../lib/authOptions";
-import Footer from "@/src/app/components/Footer";
+
+import type { Metadata } from "next";
+import React from "react";
+
 import {
     bebasNeue,
     jetBrains,
@@ -12,27 +10,42 @@ import {
     quickSand,
     sourceCodePro,
 } from "@/@lib/font";
+import { commonMetadata } from "@/common/constants/metadata/commonMetadata";
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
 
-export const metadata: Metadata = {
-    title: "Savvy-Saver",
-    description: "Save money on your food",
+type LayoutProperties = {
+    readonly children: React.ReactNode;
 };
 
-export default async function RootLayout({
+/**
+ * Root layout component.
+ * @param props - The component props.
+ * @param children - The child components.
+ * @returns The rendered layout.
+ */
+const RootLayout = async ({
     children,
-}: Readonly<{
-    children: React.ReactNode;
-}>) {
-    const session = await getServerSession(authOptions);
-    return (
-        <html lang="en">
-            <body
-                className={`${jetBrains.variable} ${quickSand.variable} ${bebasNeue.variable} ${jetBrains.variable} ${poppins.className} ${poppins.variable} ${sourceCodePro.variable} flex flex-col relative h-screen w-screen`}
-            >
-                <Header session={session}>{JSON.stringify(session)}</Header>
-                {children}
-                <Footer />
-            </body>
-        </html>
-    );
-}
+// eslint-disable-next-line require-await, @typescript-eslint/require-await -- disabled require await so faster
+}: LayoutProperties): Promise<JSX.Element> => (
+    <html lang="en">
+        <body
+            className={`${jetBrains.variable} ${quickSand.variable} ${bebasNeue.variable} ${poppins.variable} ${poppins.className} ${sourceCodePro.variable} relative flex h-screen w-screen flex-col`}
+        >
+            <Header />
+            {children}
+            <Footer />
+        </body>
+    </html>
+);
+
+/**
+ * Metadata for the application.
+ */
+export const metadata: Metadata = {
+    ...commonMetadata,
+    description: "Save money on your food",
+    title: "Savvy-Saver",
+};
+
+export default RootLayout;
