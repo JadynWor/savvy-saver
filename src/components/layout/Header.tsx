@@ -18,6 +18,12 @@ const Header = (): JSX.Element => (
         >
             {"Savvy Saver"}
         </Link>
+
+        <Link className="flex items-center font-bold text-green-600" href="/login">{"Login"}</Link>
+        <span className="text-lg text-gray-300">{"|"}</span>
+        <Link className="flex items-center font-bold text-green-600	" href="/signup">{"Register"}</Link>
+        <span className="text-lg text-gray-300">{"|"}</span>
+
     </header>
 );
 
