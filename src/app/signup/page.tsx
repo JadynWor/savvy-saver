@@ -17,7 +17,6 @@ const FORM_DEFAULT_VALUES: FormValues = {
 };
 
 /**
- * WHO IS GPTING THIS??
  *
  * SignUp component for user registration.
  * @returns {JSX.Element} The rendered SignUp component.
@@ -38,7 +37,7 @@ const SignUp: React.FC = (): JSX.Element => {
     return (
         <div className="flex min-h-screen flex-col items-center justify-center py-2">
             <h1 className="mb-10 py-10 text-5xl">
-                {"Processing..." }{"Free Sign Up"}
+                {"Register Now!"}
             </h1>
 
             <input
@@ -66,7 +65,7 @@ const SignUp: React.FC = (): JSX.Element => {
             />
 
             <button
-                className="mt-10 rounded-lg border border-gray-300 px-40 py-3 font-bold uppercase focus:border-gray-600 focus:outline-none"
+                className="mt-10 rounded-lg border border-gray-300 px-40 py-3 font-bold uppercase focus:border-gray-600 focus:outline-none bg-green-400"
                 disabled={isButtonDisabled}
                 type="button"
             >
