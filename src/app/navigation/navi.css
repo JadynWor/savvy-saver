@@ -1,0 +1,29 @@
+.navigation-container {
+    display: flex;
+    height: 100vh;
+    margin-left: 10px; 
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #ffffff;
+    overflow-y: auto; 
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.item {
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px clear #d0d0d0;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    text-align: center;
+}
